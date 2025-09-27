@@ -50,7 +50,7 @@
 Animasyonların çalışması için bir enjeksiyon eklentisi gereklidir. **Önerilen yöntem:**
 
 ### Bizim Custom CSS and JS Loader (Önerilen)
-- [Buradan indirin](https://github.com/everyoneexe/vscode-custom-css) - Bizim optimize edilmiş sürümümüz
+- [Buradan indirin](https://github.com/everyoneexe/vscode-custom-css/blob/master/vscode-custom-css-7.4.7.vsix) - Bizim optimize edilmiş sürümümüz
 - VSIX dosyasını indirip manuel kurun:
   ```bash
   code --install-extension vscode-custom-css-x.x.x.vsix
