@@ -55,11 +55,7 @@ Animasyonların çalışması için bir enjeksiyon eklentisi gereklidir. **Öner
   ```bash
   code --install-extension vscode-custom-css-x.x.x.vsix
   ```
-
-### Alternatif Seçenekler
-- **Custom UI Style:** `code --install-extension subframe7536.custom-ui-style`
-- **Orijinal Custom CSS and JS:** `code --install-extension be5invis.vscode-custom-css`
-
+  
 ## Aktivasyon
 
 1. **VSCode'u yeniden başlatın**
