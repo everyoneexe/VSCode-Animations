@@ -3,7 +3,8 @@ import { generateCSS } from "./css";
 import { InstallMethod, InstallationManager } from "./install";
 import { initMessenger } from "./messenger";
 
-export const forVSCode = true; // If the extension is for VSCode or VSCodium
+// Check if running in VSCode or VSCodium
+export const forVSCode = !vscode.env.appName.toLowerCase().includes('codium');
 
 /**
  * This method is called when the extension is activated.
