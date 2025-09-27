@@ -6,55 +6,91 @@
 
 <img src="./static/gifs/Demo.gif" />
 
-## Kurulum Adımları
+## Kurulum Yöntemleri
 
-### 1. Ana Eklentiyi Kurun
+### Yöntem 1: Hazır VSIX Dosyası (Önerilen)
 
-Şu yöntemlerden birini kullanın:
+1. **VSIX dosyasını indirin:**
+   - Bu repodan `vscode-animations-x.x.x.vsix` dosyasını indirin
 
-- [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=BrandonKirbyson.vscode-animations)'den indirin
-- VSCode içinde Extensions sekmesine gidin ve `VSCode Animations` arayın
+2. **VSCode'a kurun:**
+   ```bash
+   code --install-extension vscode-animations-x.x.x.vsix
+   ```
+   
+   Veya VSCode içinden:
+   - `Ctrl+Shift+P` → `Extensions: Install from VSIX...`
+   - İndirdiğiniz `.vsix` dosyasını seçin
 
-### 2. Enjeksiyon Eklentisini Kurun
+### Yöntem 2: Kaynak Koddan Derleme
 
-Animasyonların çalışması için bir enjeksiyon eklentisi gereklidir. **Önerilen** seçenekler:
+1. **Repoyu klonlayın:**
+   ```bash
+   git clone https://github.com/everyoneexe/VSCode-Animations.git
+   cd VSCode-Animations
+   ```
 
-#### A) Custom CSS and JS Loader (Önerilen)
-1. [Custom CSS and JS Loader](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css) eklentisini kurun
-2. VSCode yeniden başlayacaktır
+2. **Bağımlılıkları kurun:**
+   ```bash
+   npm install
+   ```
 
-#### B) Custom UI Style (Alternatif)
-1. [Custom UI Style](https://marketplace.visualstudio.com/items?itemName=subframe7536.custom-ui-style) eklentisini kurun
-2. VSCode yeniden başlayacaktır
+3. **Eklentiyi derleyin:**
+   ```bash
+   npm run package
+   ```
 
-### 3. Animasyonları Aktifleştirin
+4. **Oluşan VSIX'i kurun:**
+   ```bash
+   code --install-extension vscode-animations-x.x.x.vsix
+   ```
 
-1. Enjeksiyon eklentisi kurulduktan sonra, VSCode Animations otomatik olarak kurulum önerisinde bulunacaktır:
+## Enjeksiyon Eklentisini Kurun
+
+Animasyonların çalışması için bir enjeksiyon eklentisi gereklidir:
+
+### Seçenek A: Custom CSS and JS Loader (Önerilen)
+```bash
+code --install-extension be5invis.vscode-custom-css
+```
+
+### Seçenek B: Custom UI Style (Alternatif)
+```bash
+code --install-extension subframe7536.custom-ui-style
+```
+
+## Aktivasyon
+
+1. **VSCode'u yeniden başlatın**
+
+2. **Kurulum önerisini kabul edin:**
 
    <img src="static/images/installPrompt.png" height=100/>
 
-2. Kurulum onayını kabul edin:
+3. **Animasyonları kurun:**
 
    <img src="static/images/install.png" height=100/>
 
-3. VSCode son kez yeniden başlayacaktır
+4. **VSCode son kez yeniden başlayacaktır**
 
-### 4. Tamamlandı!
+## Manuel Kurulum (İleri Seviye)
 
-Animasyonlar artık aktif! VSCode'unuzda yumuşak geçişler ve animasyonlar göreceksiniz.
+Eğer otomatik kurulum çalışmazsa:
 
-## Hızlı Ayarlar
+1. **Script yolunu alın:**
+   - `Ctrl+Shift+P` → `Animations: Get Script Path`
 
-- **Ayarlara erişim:** `Ctrl+,` → "animations" ara
-- **Komutlar:** `Ctrl+Shift+P` → "Animations" ara
+2. **Enjeksiyon eklentinizin ayarlarına ekleyin:**
+   - Custom CSS and JS Loader: `vscode_custom_css.imports` ayarına ekleyin
+   - Custom UI Style: İlgili ayarlara script yolunu ekleyin
 
-### Temel Komutlar
+## Hızlı Komutlar
 
 | Komut | Açıklama |
 |-------|----------|
+| `Animations: Install Animations` | Animasyonları kur/yeniden kur |
 | `Animations: Enable Animations` | Animasyonları aç |
 | `Animations: Disable Animations` | Animasyonları kapat |
-| `Animations: Install Animations` | Animasyonları yeniden kur |
 | `Animations: Open Animation Settings` | Ayarları aç |
 
 ## Sorun Giderme
@@ -64,24 +100,49 @@ Bu normal bir uyarıdır:
 1. Uyarıdaki ayarlar simgesine tıklayın
 2. "Don't show again" seçeneğini işaretleyin
 
-### Animasyonlar Çalışmıyor
-1. `Ctrl+Shift+P` → `Animations: Install Animations` komutunu çalıştırın
-2. VSCode'u yeniden başlatın
-3. Hem VSCode Animations hem de enjeksiyon eklentisinin kurulu olduğundan emin olun
+### Animasyonlar Görünmüyor
+1. Enjeksiyon eklentisinin kurulu olduğundan emin olun
+2. `Ctrl+Shift+P` → `Animations: Install Animations`
+3. VSCode'u tamamen kapatıp yeniden açın
 
-### Windows Sorunları
-Eğer Windows kullanıyorsanız ve sorun yaşıyorsanız:
-1. Ayarlarda `Animations: Install Method` seçeneğini kontrol edin
-2. Farklı bir enjeksiyon eklentisi deneyebilirsiniz
+### Derleme Sorunları
+```bash
+# Node modüllerini temizleyin
+rm -rf node_modules package-lock.json
+npm install
 
-## Desteklenen Enjeksiyon Eklentileri
+# TypeScript sorunları için
+npm run compile
 
-1. **Custom CSS and JS Loader** ✅ (Önerilen)
-2. **Custom UI Style** ✅ (Yeni özellikler)
-3. **Apc Customize UI++** ❌ (Şu anda sorunlu)
+# Temiz derleme
+npm run clean
+npm run package
+```
+
+## Geliştirme
+
+### Gereksinimler
+- Node.js 16.x+
+- VSCode 1.64.0+
+- TypeScript 4.x+
+
+### Geliştirme Komutları
+```bash
+# Geliştirme modunda çalıştır
+npm run watch
+
+# Test et
+npm run test
+
+# Lint kontrolü
+npm run lint
+
+# Üretim paketi oluştur
+npm run package
+```
 
 ---
 
 ### Animasyonların keyfini çıkarın! 🎉
 
-*Daha fazla bilgi için orijinal [İngilizce README](README.md) dosyasına bakabilirsiniz.*
+*Orijinal proje: [VSCode Animations](https://github.com/BrandonKirbyson/VSCode-Animations)*
